@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 加载机器人描述参数 -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find ur5e_description)/urdf/ur5e.urdf.xacro'" />
+
+    <!-- 加载触觉遥操作参数 -->
+    <rosparam command="load" file="$(find ur5e_haptic_teleop)/config/haptic_teleop_params.yaml" />
+
+    <!-- 启动触觉遥操作节点 -->
+    <node name="haptic_teleop_node" pkg="ur5e_haptic_teleop" type="haptic_teleop_node" output="screen">
+        <remap from="/joint_states" to="/joint_states" />
+    </node>
+
+    <!-- 启动TF转换 -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="haptic_base_tf" 
+          args="0 0 0 0 0 0 base_link haptic_base" />
+</launch> 
