@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/melody/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/ackermann_steering_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/diff_drive_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/effort_controllers/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/force_torque_sensor_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/forward_command_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/four_wheel_steering_controller/include/**",
+        "/home/melody/catkin_ws/src/geomagic_myhaptics/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/gripper_action_controller/include/**",
+        "/home/melody/catkin_ws/src/haptic_from_scratch/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/imu_sensor_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/joint_state_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/joint_trajectory_controller/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/position_controllers/include/**",
+        "/home/melody/catkin_ws/src/ur5e_haptic_teleop/include/**",
+        "/home/melody/catkin_ws/src/ros_controllers/velocity_controllers/include/**",
+        "/home/melody/catkin_ws/src/wpr_simulation/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

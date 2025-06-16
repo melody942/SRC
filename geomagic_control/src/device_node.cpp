@@ -117,7 +117,7 @@ public:
         joy_msg.axes.resize(6);
         joy_msg.buttons.resize(2);
 
-        pose_msg.header.frame_id = "world";
+        pose_msg.header.frame_id = "base";
 
         state = s;
         state->buttons[0] = 0;
