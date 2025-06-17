@@ -8,10 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   geomagic_control
   moveit_core
   moveit_ros_planning_interface
-  tf2_ros
-  sensor_msgs
-  tf2_geometry_msgs
-  xacro
 )
 
 catkin_package(
@@ -22,10 +18,6 @@ catkin_package(
     geomagic_control
     moveit_core
     moveit_ros_planning_interface
-    tf2_ros
-    sensor_msgs
-    tf2_geometry_msgs
-    xacro
 )
 
 include_directories(
