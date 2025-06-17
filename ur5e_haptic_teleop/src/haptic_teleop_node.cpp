@@ -30,7 +30,7 @@ public:
 
         nh_.param<std::string>("robot_base_frame", robot_base_frame_, "base_link");
         nh_.param<std::string>("robot_eef_frame", robot_eef_frame_, "tool0");
-        nh_.param<double>("linear_scale", linear_scale_, 1.0); // 位置模式下，缩放因子通常为1
+        nh_.param<double>("linear_scale", linear_scale_, 10.0); // 位置模式下，缩放因子通常为1
         nh_.param<double>("angular_scale", angular_scale_, 1.0);
         nh_.param<double>("loop_rate", loop_rate_, 100.0);
 
@@ -56,6 +56,7 @@ private:
     {
         eigen_iso.translation() = Eigen::Vector3d(msg.position.x, msg.position.y, msg.position.z);
         Eigen::Quaterniond q(msg.orientation.w, msg.orientation.x, msg.orientation.y, msg.orientation.z);
+        q.normalize(); // 强制归一化四元数
         eigen_iso.linear() = q.toRotationMatrix();
     }
     
@@ -110,6 +111,7 @@ private:
         }
         transformMsgToEigen(latest_haptic_pose_msg_.pose, initial_haptic_pose_in_haptic_frame_);
         initial_haptic_pose_in_haptic_frame_.translation() /= 1000.0; // mm to meters
+
         return true;
     }
 
@@ -123,6 +125,14 @@ private:
 
         Eigen::Isometry3d haptic_delta = initial_haptic_pose_in_haptic_frame_.inverse() * current_haptic_pose_in_haptic_frame;
         
+        // 应用线性缩放
+        haptic_delta.translation() *= linear_scale_;
+
+        // 应用角度缩放
+        Eigen::AngleAxisd aa(haptic_delta.linear());
+        aa.angle() *= angular_scale_;
+        haptic_delta.linear() = aa.toRotationMatrix();
+
         Eigen::Isometry3d target_robot_pose = initial_robot_pose_ * haptic_delta;
 
         // 进行逆运动学解算

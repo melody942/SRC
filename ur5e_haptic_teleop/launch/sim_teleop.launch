@@ -1,14 +1,18 @@
 <launch>
-    <include file="$(find ur_gazebo)/launch/ur5_bringup.launch" />
-    <include file="$(find ur5_moveit_config)/launch/moveit_planning_execution.launch">
+    <include file="$(find ur_gazebo)/launch/ur16e_bringup.launch" />
+    <include file="$(find ur16e_moveit_config)/launch/moveit_planning_execution.launch">
         <arg name="sim" value="true"/>
     </include>
-    <include file="$(find ur5_moveit_config)/launch/moveit_rviz.launch">
+    <include file="$(find ur16e_moveit_config)/launch/moveit_rviz.launch">
         <arg name="config" value="true"/>
     </include>
 
     <include file="$(find geomagic_control)/launch/geomagic.launch" />
 
-    <node name="haptic_teleop_node" pkg="ur5e_haptic_teleop" type="haptic_teleop_node" required="true" output="screen"/>
+    <node name="haptic_teleop_node" pkg="ur5e_haptic_teleop" type="haptic_teleop_node" required="true" output="screen">
+        <param name="linear_scale" value="1.0"/>
+        <param name="angular_scale" value="1.0"/>
+        <param name="filter_alpha" value="0.5"/>
+    </node>
 
     </launch>
